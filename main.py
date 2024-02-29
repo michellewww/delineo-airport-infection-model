@@ -25,22 +25,13 @@ high_emit_rate = 2.354*10**5
 
 N0 = 900 # number of particles inhaled to get infected
 
-
-if __name__ == "__main__":
-    facilityInfectedTime = td.facilityInfectedTime
-    peopleFacilityTime = td.peopleFacilityTime
-    fraction_inhaled = gim.fraction_inhaled()
-
-    peopleGettingInfected = []
-
-    # initialize facility concentration for each time {t: {facility: conc}}
-    time_facility_conc = {}
-    for t in range(60):
+def simulate(cur_time):
+    for t in range(cur_time):
         time_facility_conc[t] = {}
         for f in range(19):
             time_facility_conc[t][f] = 0
 
-    for t in range(60):
+    for t in range(cur_time):
         print("t: ", t)
         for f in range(19):
             f_conc = gim.facility_concentration(t, f, facilityInfectedTime, cfg.facilityInfo[f][7], low_emit_rate, high_emit_rate)
@@ -55,9 +46,21 @@ if __name__ == "__main__":
                     f_conc = time_facility_conc[t][facility_id]
                     total_inhaled += fraction_inhaled * f_conc
         p_infected = 1 - math.exp(-total_inhaled/N0)
+        people_infected_prob[person] = p_infected
         print(f"Person {person} has a {p_infected} chance of being infected")
         if p_infected > 0.7:
             peopleGettingInfected.append(person)
         
         
-            
+        
+
+if __name__ == "__main__":
+    facilityInfectedTime = td.facilityInfectedTime
+    peopleFacilityTime = td.peopleFacilityTime
+    fraction_inhaled = gim.fraction_inhaled()
+
+    peopleGettingInfected = []
+    people_infected_prob = {}
+    # initialize facility concentration for each time {t: {facility: conc}}
+    time_facility_conc = {}
+    simulate(60)
