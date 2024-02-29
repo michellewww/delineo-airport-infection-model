@@ -34,25 +34,25 @@ mapWidth = 600
 mapLength = 800
 # id: [name, type, X, Y, maxOccupancy, medium, variance, volume]
 facilityInfo = {
-    0:  ['gate1',          'Gate',      30,  350, 500,   60,  16, 2000000],
-    1:  ['gate2',          'Gate',      280, 550, 500,   60,  16, 2000000],
-    2:  ['restroom1',      'Restroom',  130, 350, 20,    3,  1, 300000],
-    3:  ['restaurant1',    'Food',      280, 350, 50,    15, 4, 600000],
-    4:  ['store1',         'Shopping',  380, 350, 10,    3,  1, 500000],
-    5:  ['restaurant2',    'Food',      450, 350, 20,    10, 4, 600000],
-    6:  ['restroom2',      'Restroom',  550, 350, 10,    2,  1, 300000],
-    7:  ['restroom3',      'Restroom',  280, 480, 15,    2,  1, 300000],
-    8:  ['store2',         'Shopping',  380, 220, 15,    5,  1, 500000],
-    9:  ['restaurant3',    'Food',      450, 280, 40,    10, 4, 600000],
-    10: ['baggage claim1', 'BC',        670, 290, 300,   20, 4, 3000000],
-    11: ['baggage claim2', 'BC',        670, 390, 300,   19, 4, 3000000],
-    12: ['exit',           'Exit',      750, 350, 10000, 0,  0, 5000000],
-    13: ['counter1',       'Counter',   190, 50,  None,   None,  None, 100000],
-    14: ['counter2',       'Counter',   270, 50,  None,   None,  None, 100000],
-    15: ['counter3',       'Counter',   350, 50,  None,   None,  None, 100000],
-    16: ['security1',      'Security',  190, 150, None,   None,  None, 100000],
-    17: ['security2',      'Security',  270, 150, None,   None,  None, 100000],
-    18: ['security3',      'Security',  350, 150, None,   None,  None, 100000]
+    0:  ['gate1',          'Gate',      30,  350, 500,   60,  16, 200000],
+    1:  ['gate2',          'Gate',      280, 550, 500,   60,  16, 200000],
+    2:  ['restroom1',      'Restroom',  130, 350, 20,    3,  1, 30000],
+    3:  ['restaurant1',    'Food',      280, 350, 50,    15, 4, 60000],
+    4:  ['store1',         'Shopping',  380, 350, 10,    3,  1, 50000],
+    5:  ['restaurant2',    'Food',      450, 350, 20,    10, 4, 60000],
+    6:  ['restroom2',      'Restroom',  550, 350, 10,    2,  1, 30000],
+    7:  ['restroom3',      'Restroom',  280, 480, 15,    2,  1, 30000],
+    8:  ['store2',         'Shopping',  380, 220, 15,    5,  1, 50000],
+    9:  ['restaurant3',    'Food',      450, 280, 40,    10, 4, 60000],
+    10: ['baggage claim1', 'BC',        670, 290, 300,   20, 4, 300000],
+    11: ['baggage claim2', 'BC',        670, 390, 300,   19, 4, 300000],
+    12: ['exit',           'Exit',      750, 350, 10000, 0,  0, 500000],
+    13: ['counter1',       'Counter',   190, 50,  None,   None,  None, 10000],
+    14: ['counter2',       'Counter',   270, 50,  None,   None,  None, 10000],
+    15: ['counter3',       'Counter',   350, 50,  None,   None,  None, 10000],
+    16: ['security1',      'Security',  190, 150, None,   None,  None, 10000],
+    17: ['security2',      'Security',  270, 150, None,   None,  None, 10000],
+    18: ['security3',      'Security',  350, 150, None,   None,  None, 10000]
 }
 
 
