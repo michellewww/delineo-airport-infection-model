@@ -4,6 +4,7 @@ import math
 import numpy as np
 import test_data as td
 
+totalTimeStep = 300
 # person - 440 people
 # dict {facility id: list of tuples (enter time, leave time)}
 # boolean masked
@@ -63,4 +64,4 @@ if __name__ == "__main__":
     people_infected_prob = {}
     # initialize facility concentration for each time {t: {facility: conc}}
     time_facility_conc = {}
-    simulate(60)
+    simulate(totalTimeStep)
