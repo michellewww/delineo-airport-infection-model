@@ -65,13 +65,13 @@ while running and file_index < len(json_files):
 
     screen.fill(background_color)
 
-    for facility in facility_data["fac_floor1"]:
-        draw_facility(facility["facilityName"],facility["minX"], facility["minY"], facility["maxX"], facility["maxY"], facility_color)
+    for facility in facility_data["floor_2"]:
+        draw_facility(facility["facility_name"],facility["minX"], facility["minY"], facility["maxX"], facility["maxY"], facility_color)
 
     current_data = parse_json_file(os.path.join('data', json_files[file_index]))
     
     for passenger in current_data["Passenger"]:
-        if passenger != {}:
+        if passenger != {} and passenger["Z"] > 200:
             if passenger["ID"] not in color_map:
                 color_map[passenger["ID"]] = generate_random_color()
             
