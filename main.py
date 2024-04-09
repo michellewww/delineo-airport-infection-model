@@ -4,7 +4,7 @@ import math
 import numpy as np
 import test_data as td
 
-totalTimeStep = 300
+totalTimeStep = 519
 # person - 440 people
 # dict {facility id: list of tuples (enter time, leave time)}
 # boolean masked
@@ -26,7 +26,7 @@ high_emit_rate = 2.354*10**5
 
 N0 = 900 # number of particles inhaled to get infected
 
-def simulate(cur_time):
+def simulate(cur_time, total_virions_inhaled):
     for t in range(cur_time):
         time_facility_conc[t] = {}
         for f in range(19):
@@ -46,6 +46,11 @@ def simulate(cur_time):
                 for t in range(enter_time, leave_time + 1):  # Include the leave_time
                     f_conc = time_facility_conc[t][facility_id]
                     total_inhaled += fraction_inhaled * f_conc
+        print(person)
+        print(total_virions_inhaled)
+        if person in total_virions_inhaled:
+            total_inhaled += total_virions_inhaled[person]
+
         p_infected = 1 - math.exp(-total_inhaled/N0)
         people_infected_prob[person] = p_infected
         print(f"Person {person} has a {p_infected} chance of being infected")
@@ -59,9 +64,11 @@ if __name__ == "__main__":
     facilityInfectedTime = td.facilityInfectedTime
     peopleFacilityTime = td.peopleFacilityTime
     fraction_inhaled = gim.fraction_inhaled()
+    total_virions_inhaled = gim.short_distance_virions_inhaled()
 
     peopleGettingInfected = []
     people_infected_prob = {}
     # initialize facility concentration for each time {t: {facility: conc}}
     time_facility_conc = {}
-    simulate(totalTimeStep)
+    simulate(totalTimeStep, total_virions_inhaled)
+    gim.short_distance_virions_inhaled()

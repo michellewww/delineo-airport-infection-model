@@ -15,9 +15,76 @@
 import config as cfg
 import pandas as pd
 import numpy as np
+import math
+import os
+import json
+import re
+from scipy.interpolate import interp1d
 
 lifetime = 1.628 #hours
 deg_rate = 1/(lifetime*60) # 1/min
+distance_to_virions = {
+    0.25: 96.57,
+    0.5: 68.37,
+    0.75: 32.68,
+    1: 20.53,
+    1.25: 16.47,
+    1.5: 13.39,
+    1.75: 11.18,
+    2: 10.82,
+}
+folder_path = 'UERealTimeMovementData'
+infected_people = [0, 1, 11, 22, 33, 55]
+distances = list(distance_to_virions.keys())
+virions = list(distance_to_virions.values())
+interp_func = interp1d(distances, virions, kind='linear', fill_value="extrapolate")
+
+def calculate_distance(x1, y1, z1, x2, y2, z2):
+    if z1 <= 200 and z2 <= 200:
+        return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2) / 1000
+    elif z1 > 200 and z2 > 200:
+        return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2) / 1000
+    else:
+        return math.inf
+
+def short_distance_virions_inhaled():
+    total_virions_inhaled = {}
+
+    for filename in sorted(os.listdir(folder_path)):
+        if filename.endswith('.json'):
+            with open(os.path.join(folder_path, filename), 'r') as file:
+                data = json.load(file)
+                passengers = data['Passenger']
+                # delete first {} in passengers
+                passengers.pop(0)
+
+                # Create a map of positions for quick access
+                positions = {int(re.search(r'\d+', p['ID']).group()): (p['X'], p['Y'], p['Z']) for p in passengers}
+
+                # Calculate virions inhaled for each non-infected person
+                for passenger_id, pos in positions.items():
+                    if passenger_id not in infected_people:
+                        total_virions = 0
+                        
+                        # Calculate distance from each infected person and sum virions inhaled
+                        for infected_id in infected_people:
+                            if infected_id in positions:
+                                infected_pos = positions[infected_id]
+                                distance = calculate_distance(*pos, *infected_pos)
+                                virions_inhaled = interp_func(min(distance, max(distances)))/60  # Use interpolated value
+                                total_virions += virions_inhaled
+                        
+                        # Update total virions inhaled for the passenger
+                        if passenger_id in total_virions_inhaled:
+                            total_virions_inhaled[passenger_id] += total_virions
+                        else:
+                            total_virions_inhaled[passenger_id] = total_virions
+
+    print(total_virions_inhaled)
+    # for passenger_id, virions in total_virions_inhaled.items():
+    #     print(f"{passenger_id}: {virions} virions inhaled")
+    return total_virions_inhaled
+
 
 def filt_removal(vol, filt_rate):
     # vol: volume of facility (m^3)

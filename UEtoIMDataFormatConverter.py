@@ -99,7 +99,7 @@ for id, person in peopleList.items():
                 (enterTime, len(person.movementTrack) + person.enteredTime))
 
 
-with open("UEtoIM_formatted_data.py", "w") as f:
+with open("UEtoIM_formatted_data1.py", "w") as f:
     f.write("facilityInfectedTime = {\n")
     for facility_id, infected_times in facilityInfectedTime.items():
         f.write(f"    {facility_id}: {infected_times},\n")
