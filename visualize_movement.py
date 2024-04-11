@@ -51,7 +51,7 @@ def draw_passenger(x, y, color):
 def generate_random_color():
     return random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
 
-facility_data = parse_json_file('facility_loc.json')
+facility_data = parse_json_file('UEAirportFacilityList.json')
 json_files = get_json_file_names('data')
 color_map = {}
 
@@ -65,13 +65,13 @@ while running and file_index < len(json_files):
 
     screen.fill(background_color)
 
-    for facility in facility_data["floor_2"]:
-        draw_facility(facility["facility_name"],facility["minX"], facility["minY"], facility["maxX"], facility["maxY"], facility_color)
+    for facility in facility_data["floor_1"]:
+        draw_facility(facility["ID"],facility["minX"], facility["minY"], facility["maxX"], facility["maxY"], facility_color)
 
     current_data = parse_json_file(os.path.join('data', json_files[file_index]))
     
     for passenger in current_data["Passenger"]:
-        if passenger != {} and passenger["Z"] > 200:
+        if passenger != {} and passenger["Z"] < 200:
             if passenger["ID"] not in color_map:
                 color_map[passenger["ID"]] = generate_random_color()
             

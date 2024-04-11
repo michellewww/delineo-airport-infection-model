@@ -9,7 +9,7 @@ class Person:
         self.enteredTime = enteredTime
         self.movementTrack = []
         probability = random.random()
-        if probability <= 0.2:
+        if probability <= 0.05:
             self.infected = 1
         else:
             self.infected = 0
@@ -98,8 +98,15 @@ for id, person in peopleList.items():
             facilityInfectedTime.setdefault(currentFacility, []).append(
                 (enterTime, len(person.movementTrack) + person.enteredTime))
 
+infectedPeopleList = []
+for id, person in peopleList.items():
+    if person.infected:
+        infectedPeopleList.append(id)
+
 
 with open("UEtoIM_formatted_data1.py", "w") as f:
+    f.write(f"infectedPeopleList = {infectedPeopleList}\n\n")
+
     f.write("facilityInfectedTime = {\n")
     for facility_id, infected_times in facilityInfectedTime.items():
         f.write(f"    {facility_id}: {infected_times},\n")

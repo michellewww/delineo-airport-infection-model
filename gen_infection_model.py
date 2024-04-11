@@ -20,6 +20,7 @@ import os
 import json
 import re
 from scipy.interpolate import interp1d
+import UEtoIM_formatted_data1 as uedata
 
 lifetime = 1.628 #hours
 deg_rate = 1/(lifetime*60) # 1/min
@@ -34,7 +35,7 @@ distance_to_virions = {
     2: 10.82,
 }
 folder_path = 'UERealTimeMovementData'
-infected_people = [0, 1, 11, 22, 33, 55]
+infected_people = uedata.infectedPeopleList
 distances = list(distance_to_virions.keys())
 virions = list(distance_to_virions.values())
 interp_func = interp1d(distances, virions, kind='linear', fill_value="extrapolate")

@@ -29,12 +29,12 @@ N0 = 900 # number of particles inhaled to get infected
 def simulate(cur_time, total_virions_inhaled):
     for t in range(cur_time):
         time_facility_conc[t] = {}
-        for f in range(19):
+        for f in range(11):
             time_facility_conc[t][f] = 0
 
     for t in range(cur_time):
         print("t: ", t)
-        for f in range(19):
+        for f in range(11):
             f_conc = gim.facility_concentration(t, f, facilityInfectedTime, cfg.facilityInfo[f][7], low_emit_rate, high_emit_rate)
             time_facility_conc[t][f] = f_conc
             print(f"Facility {f} has a concentration of {f_conc} at time {t}")
@@ -44,8 +44,9 @@ def simulate(cur_time, total_virions_inhaled):
         for facility_id, visited_times in visited_facilities.items():
             for enter_time, leave_time in visited_times:
                 for t in range(enter_time, leave_time + 1):  # Include the leave_time
-                    f_conc = time_facility_conc[t][facility_id]
-                    total_inhaled += fraction_inhaled * f_conc
+                    if facility_id in time_facility_conc[t]:
+                        f_conc = time_facility_conc[t][facility_id]
+                        total_inhaled += fraction_inhaled * f_conc
         print(person)
         print(total_virions_inhaled)
         if person in total_virions_inhaled:

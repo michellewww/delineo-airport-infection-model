@@ -1,56 +1,64 @@
 {
     "floor_1": [
         {
-            "ID": "checkin_counter",
+            "ID": 0,
+            "name": "checkin_counter",
             "minX": -1880,
             "maxX": -140,
             "minY": -3317,
             "maxY": -2097
         },
         {
-            "ID": "egg_shell_cafe",
+            "ID": 1,
+            "name": "egg_shell_cafe",
             "minX": 3609,
             "maxX": 5220,
             "minY": -2897,
             "maxY": -997
         },
         {
-            "ID": "security",
+            "ID": 2,
+            "name": "security",
             "minX": 1399,
             "maxX": 2950,
             "minY": -3877,
             "maxY": -2967
         },
         {
-            "ID": "restroom",
+            "ID": 3,
+            "name": "restroom1",
             "minX": 1839,
             "maxX": 2679,
             "minY": -4927,
             "maxY": -3907
         },
         {
-            "ID": "gate_1",
+            "ID": 4,
+            "name": "gate_1",
             "minX": -350,
             "maxX": 1589,
             "minY": -6277,
             "maxY": -5407
         },
         {
-            "ID": "gate_2",
+            "ID": 5,
+            "name": "gate_2",
             "minX": 1589,
             "maxX": 4329,
             "minY": -6327,
             "maxY": -5597
         },
         {
-            "ID": "book_store",
+            "ID": 6,
+            "name": "book_store",
             "minX": -920,
             "maxX": -660,
             "minY": -6267,
             "maxY": -5007
         },
         {
-            "ID": "cafe_under_stair",
+            "ID": 7,
+            "name": "cafe_under_stair",
             "minX": -920,
             "maxX": 9.78,
             "minY": -4857,
@@ -59,35 +67,40 @@
     ],
     "floor_2": [
         {
-            "ID": "restroom",
+            "ID": 8,
+            "name": "restroom2",
             "minX": 1869,
             "maxX": 2599,
             "minY": -4947,
             "maxY": -3907
         },
         {
-            "ID": "gate_3",
+            "ID": 9,
+            "name": "gate_3",
             "minX": -4830,
             "maxX": -1880,
             "minY": -6667,
             "maxY": -5637
         },
         {
-            "ID": "gate_4",
+            "ID": 10,
+            "name": "gate_4",
             "minX": -1880,
             "maxX": 1269,
             "minY": -6547,
             "maxY": -5407
         },
         {
-            "ID": "gate_5",
+            "ID": 11,
+            "name": "gate_5",
             "minX": 1269,
             "maxX": 4799,
             "minY": -6497,
             "maxY": -5617
         },
         {
-            "ID": "cafe",
+            "ID": 12,
+            "name": "cafe",
             "minX": -4440,
             "maxX": -3150,
             "minY": -5217,
