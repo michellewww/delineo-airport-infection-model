@@ -2,7 +2,7 @@ import gen_infection_model as gim
 import config as cfg
 import math
 import numpy as np
-import test_data as td
+import UEtoIM_formatted_data1 as td
 
 totalTimeStep = 519
 # person - 440 people
@@ -29,32 +29,33 @@ N0 = 900 # number of particles inhaled to get infected
 def simulate(cur_time, total_virions_inhaled):
     for t in range(cur_time):
         time_facility_conc[t] = {}
-        for f in range(11):
+        for f in range(13):
             time_facility_conc[t][f] = 0
 
     for t in range(cur_time):
-        print("t: ", t)
-        for f in range(11):
+        # print("t: ", t)
+        for f in range(13):
             f_conc = gim.facility_concentration(t, f, facilityInfectedTime, cfg.facilityInfo[f][7], low_emit_rate, high_emit_rate)
             time_facility_conc[t][f] = f_conc
-            print(f"Facility {f} has a concentration of {f_conc} at time {t}")
+            # print(f"Facility {f} has a concentration of {f_conc} at time {t}")
             
     for person, visited_facilities in peopleFacilityTime.items():
         total_inhaled = 0
         for facility_id, visited_times in visited_facilities.items():
             for enter_time, leave_time in visited_times:
                 for t in range(enter_time, leave_time + 1):  # Include the leave_time
-                    if facility_id in time_facility_conc[t]:
+                    # if t is in time_facility_conc and facility_id is in time_facility_conc[t]
+                    if t in time_facility_conc and facility_id in time_facility_conc[t]:
                         f_conc = time_facility_conc[t][facility_id]
                         total_inhaled += fraction_inhaled * f_conc
-        print(person)
-        print(total_virions_inhaled)
+        # print(person)
+        # print(total_virions_inhaled)
         if person in total_virions_inhaled:
             total_inhaled += total_virions_inhaled[person]
 
         p_infected = 1 - math.exp(-total_inhaled/N0)
         people_infected_prob[person] = p_infected
-        print(f"Person {person} has a {p_infected} chance of being infected")
+        # print(f"Person {person} has a {p_infected} chance of being infected")
         if p_infected > 0.7:
             peopleGettingInfected.append(person)
         
@@ -71,5 +72,5 @@ if __name__ == "__main__":
     people_infected_prob = {}
     # initialize facility concentration for each time {t: {facility: conc}}
     time_facility_conc = {}
-    simulate(totalTimeStep, total_virions_inhaled)
+    simulate(totalTimeStep + 1, total_virions_inhaled)
     gim.short_distance_virions_inhaled()

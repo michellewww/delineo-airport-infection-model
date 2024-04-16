@@ -56,14 +56,14 @@ mapLength = 800
 # }
 facilityInfo = {
   0: ["checkin_counter", "type_placeholder", -10.1, -27.07, "maxOccupancy_placeholder","medium", "variance", 10000],
-  1: ["egg_shell_cafe", "type_placeholder", 44.145, -19.47, "maxOccupancy_placeholder", "medium", "variance", 5000],
-  2: ["security", "type_placeholder", 21.745, -34.22, "maxOccupancy_placeholder", "medium", "variance", 10000],
-  3: ["restroom1", "type_placeholder", 22.59, -44.17, "maxOccupancy_placeholder", "medium", "variance", 3000],
+  1: ["egg_shell_cafe", "type_placeholder", 44.145, -19.47, "maxOccupancy_placeholder", "medium", "variance", 10000],
+  2: ["security", "type_placeholder", 21.745, -34.22, "maxOccupancy_placeholder", "medium", "variance", 15000],
+  3: ["restroom1", "type_placeholder", 22.59, -44.17, "maxOccupancy_placeholder", "medium", "variance", 5000],
   4: ["gate_1", "type_placeholder", 6.195, -58.42, "maxOccupancy_placeholder", "medium", "variance", 200000],
   5: ["gate_2", "type_placeholder", 29.59, -59.62, "maxOccupancy_placeholder", "medium", "variance", 200000],
   6: ["book_store", "type_placeholder", -7.9, -56.37, "maxOccupancy_placeholder", "medium", "variance", 5000],
   7: ["cafe_under_stair", "type_placeholder", -4.5511, -45.12, "maxOccupancy_placeholder", "medium", "variance", 5000],
-  8: ["restroom2", "type_placeholder", 22.34, -44.27, "maxOccupancy_placeholder", "medium", "variance", 10000],
+  8: ["restroom2", "type_placeholder", 22.34, -44.27, "maxOccupancy_placeholder", "medium", "variance", 5000],
   9: ["gate_3", "type_placeholder", -33.55, -61.52, "maxOccupancy_placeholder", "medium", "variance", 200000],
   10: ["gate_4", "type_placeholder", -3.055, -59.77, "maxOccupancy_placeholder", "medium", "variance", 200000],
   11: ["gate_5", "type_placeholder", 30.34, -60.57, "maxOccupancy_placeholder", "medium", "variance", 200000],
