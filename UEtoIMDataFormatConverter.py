@@ -9,7 +9,7 @@ class Person:
         self.enteredTime = enteredTime
         self.movementTrack = []
         probability = random.random()
-        if probability <= 0.05:
+        if probability <= 0.005:
             self.infected = 1
         else:
             self.infected = 0
@@ -49,8 +49,8 @@ json_files = get_json_file_names('UERealtimeMovementData')
 peopleList = {}
 
 # iterate through every timestep
-for file_index in range(len(json_files)):
-    print(f"Processing file {file_index + 1}/{len(json_files)}")
+# for file_index in range(len(json_files)):
+for file_index in range(600):
     current_data = parse_json_file(os.path.join('UERealtimeMovementData', json_files[file_index]))
 
     # interate through every passenger
