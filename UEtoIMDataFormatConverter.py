@@ -18,8 +18,15 @@ def get_json_file_names(directory):
     return sorted([f for f in os.listdir(directory) if f.endswith('.json')], key=lambda x: int(x.split('.')[0]))
 
 def parse_json_file(file_name):
-    with open(file_name, 'r') as file:
-        return json.load(file)
+    try:
+        with open(file_name, 'r') as file:
+            return json.load(file)
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON in file {file_name}: {e}")
+        return None
+    except Exception as e:
+        print(f"Unexpected error with file {file_name}: {e}")
+        return None
 
 def extractID(id_string):
     match = re.search(r'\d+$', id_string)
@@ -43,6 +50,7 @@ peopleList = {}
 
 # iterate through every timestep
 for file_index in range(len(json_files)):
+    print(f"Processing file {file_index + 1}/{len(json_files)}")
     current_data = parse_json_file(os.path.join('UERealtimeMovementData', json_files[file_index]))
 
     # interate through every passenger
